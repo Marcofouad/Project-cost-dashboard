@@ -4,20 +4,43 @@ body {
     background-color: #f4f7f6;
     margin: 0;
     padding: 20px;
-    direction: rtl; /* دعم اللغة العربية */
+    direction: rtl; 
     text-align: right;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 900px; /* زيادة العرض لاستيعاب الجدول */
     margin: 0 auto;
     padding: 20px;
+}
+
+/*... تنسيقات Branding Header كما هي ...*/
+.branding-header {
+    text-align: right; 
+    margin-bottom: 10px;
+    padding-top: 10px;
+    color: #34495e;
+}
+
+.branding-header .english-title {
+    margin: 0;
+    color: #3498db; 
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.branding-header .author-name {
+    margin-top: 5px;
+    font-size: 0.8em; 
+    color: #7f8c8d;
+    margin-bottom: 0;
 }
 
 h1 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 30px;
+    margin-top: 0; 
 }
 
 /* تنسيق بطاقات لوحة التحكم */
@@ -37,29 +60,76 @@ h2 {
     margin-top: 0;
 }
 
-/* تنسيق حقول الإدخال */
-.input-group {
+/* تنسيق الجداول */
+#cost-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+}
+
+#cost-table th, #cost-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#cost-table th {
+    background-color: #ecf0f1;
+    color: #333;
+    font-weight: bold;
+}
+
+#cost-table input[type="text"], #cost-table input[type="number"] {
+    width: 90%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+}
+
+/* تنسيق الأزرار داخل الجدول */
+.small-button {
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 1;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.remove-button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    line-height: 1;
+    padding: 0;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* تنسيق حقل التوقع الإضافي */
+.forecasting-input-group {
     margin-bottom: 15px;
 }
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: #333;
-}
-
-input[type="number"] {
+.forecasting-input-group input {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box; /* لضمان أن العرض يشمل البادينغ والحدود */
+    box-sizing: border-box;
 }
 
-/* تنسيق الزر */
-button {
-    background-color: #2ecc71;
+/* تنسيق زر الحساب الرئيسي */
+.calculate-button {
+    background-color: #3498db;
     color: white;
     padding: 10px 15px;
     border: none;
@@ -70,9 +140,10 @@ button {
     width: 100%;
 }
 
-button:hover {
-    background-color: #27ae60;
+.calculate-button:hover {
+    background-color: #2980b9;
 }
+
 
 /* تنسيق قسم النتائج */
 .results-card {
@@ -105,13 +176,13 @@ button:hover {
 
 /* تنسيق حالات النتائج (للألوان التفاعلية) */
 .status-good {
-    color: #27ae60; /* أخضر - توفير */
+    color: #27ae60; 
 }
 
 .status-bad {
-    color: #e74c3c; /* أحمر - تجاوز */
+    color: #e74c3c; 
 }
 
 .status-neutral {
-    color: #f39c12; /* برتقالي - في الانتظار/متساوي */
+    color: #f39c12; 
 }

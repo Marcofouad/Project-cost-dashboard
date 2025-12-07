@@ -3,35 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>لوحة تحكم تكاليف المشاريع</title>
+    <title>لوحة تحكم تكاليف المشاريع المتقدمة</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>لوحة تحكم تكاليف المشاريع</h1>
         
-        <div class="dashboard-card">
-            <h2>إدخال بيانات التكلفة</h2>
-            <div class="input-group">
-                <label for="planned-cost">التكلفة المخططة:</label>
-                <input type="number" id="planned-cost" placeholder="أدخل التكلفة المخططة" value="100000">
+        <div class="branding-header">
+            <h2 class="english-title">Project Cost Dashboard</h2>
+            <p class="author-name">by Marco Nabil</p>
+        </div>
+
+        <h1>تحليل تكاليف المشاريع</h1>
+        
+        <div class="dashboard-card input-card">
+            <h2>1. إدخال بنود التكلفة</h2>
+            
+            <table id="cost-table">
+                <thead>
+                    <tr>
+                        <th>بند التكلفة</th>
+                        <th>التكلفة المخططة (BCWS)</th>
+                        <th>التكلفة الفعلية (ACWP)</th>
+                        <th><button onclick="addRow()" class="small-button">+</button></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="cost-row">
+                        <td><input type="text" placeholder="مثال: التصميم" value="التصميم"></td>
+                        <td><input type="number" class="planned-cost" value="50000"></td>
+                        <td><input type="number" class="actual-cost" value="45000"></td>
+                        <td><button onclick="removeRow(this)" class="remove-button">-</button></td>
+                    </tr>
+                    <tr class="cost-row">
+                        <td><input type="text" placeholder="مثال: التطوير" value="التطوير"></td>
+                        <td><input type="number" class="planned-cost" value="150000"></td>
+                        <td><input type="number" class="actual-cost" value="160000"></td>
+                        <td><button onclick="removeRow(this)" class="remove-button">-</button></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="forecasting-input-group">
+                <label for="remaining-estimate">تقدير التكلفة المتبقية (ETC/EOT):</label>
+                <input type="number" id="remaining-estimate" placeholder="التكلفة اللازمة لإكمال العمل المتبقي">
             </div>
-            <div class="input-group">
-                <label for="actual-cost">التكلفة الفعلية:</label>
-                <input type="number" id="actual-cost" placeholder="أدخل التكلفة الفعلية" value="95000">
-            </div>
-            <button onclick="calculateCost()">حساب الفروقات</button>
+            
+            <button onclick="calculateCost()" class="calculate-button">حساب التحليل والنتائج</button>
         </div>
 
         <div class="dashboard-card results-card">
-            <h2>نتائج تحليل التكلفة</h2>
+            <h2>2. مؤشرات الأداء الأساسية (SPI/CPI)</h2>
             <div class="result-display">
-                <p>الفرق (التغير):</p>
-                <span id="difference-output">0</span>
+                <p>إجمالي التكلفة المخططة (BAC):</p>
+                <span id="bac-output">0</span>
             </div>
             <div class="result-display">
-                <p>الحالة:</p>
+                <p>إجمالي التكلفة الفعلية (AC):</p>
+                <span id="ac-output">0</span>
+            </div>
+            <div class="result-display">
+                <p>انحراف التكلفة (CV):</p>
+                <span id="cv-output">0</span>
+            </div>
+             <div class="result-display">
+                <p>الميزانية المتبقية للعمل (BVAC):</p>
+                <span id="bvac-output">0</span>
+            </div>
+        </div>
+
+        <div class="dashboard-card results-card forecasting-output">
+            <h2>3. مؤشرات التوقع (EAC)</h2>
+             <div class="result-display">
+                <p>تقدير التكلفة عند الانتهاء (EAC/FAC):</p>
+                <span id="eac-output">0</span>
+            </div>
+            <div class="result-display">
+                <p>تقدير الوقت عند الانتهاء (EOT/ETC):</p>
+                <span id="etc-output">0</span>
+            </div>
+            <div class="result-display">
+                <p>الوضع العام:</p>
                 <span id="status-output" class="status-neutral">في الانتظار</span>
             </div>
         </div>
